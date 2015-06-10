@@ -1,0 +1,2 @@
+
+var BBOX = require('bbox');

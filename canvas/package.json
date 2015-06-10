@@ -1,0 +1,21 @@
+{
+  "name": "bbox",
+  "version": "1.0.0",
+  "description": "BoundingBoX implementation",
+  "main": "bbox.js",
+  "dependencies": {
+    "canvas": "^1.2.3",
+    "proj4": "^2.3.6",
+    "request": "^2.57.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickooms"
+  },
+  "author": "Nick Ooms",
+  "license": "ISC"
+}
