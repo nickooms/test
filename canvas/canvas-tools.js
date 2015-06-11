@@ -7,3 +7,8 @@ Canvas.prototype.load = function(fileName, callback) {
 		callback(result);
 	}.bind(this));
 };
+Canvas.prototype.save = function(fileName, callback) {
+	IMG.savePNG(fileName, this, function(fileName) {
+		callback(fileName);
+	});
+};

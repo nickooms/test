@@ -13,9 +13,10 @@ var Canvas = require('canvas'),
 var alert = function() {
 	console.log(arguments[0]);
 }
+alert('========================================');
 if (process.argv.length > 2) {
-	IMG.loadPNG(__dirname + '/wms.png', function (canvas, fileName) {
-		alert('========================================');
+	var canvas = new Canvas();
+	IMG.loadPNG(__dirname + '/wms.png', canvas, function (canvas, fileName) {
 		alert('Loaded ' + fileName);
 		IMG.findColors(canvas);
 		IMG.fillAllPixels(canvas, '#cccccc', 0xff0000ff);

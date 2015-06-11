@@ -56,14 +56,16 @@ IMG.findPixel = function(canvas, replaceColor, fillColor) {
 	}
 	return false;
 };
-IMG.loadPNG = function(fileName, callback) {
+IMG.loadPNG = function(fileName, canvas, callback) {
 	fs.readFile(__dirname + '/wms.png', function(err, image) {
 		var img = new Image;
 		img.src = image;
-		var w = img.width, h = img.height, canvas = new Canvas(w, h);
+		var w = img.width, h = img.height;//, canvas = new Canvas(w, h);
+		canvas.width = w;
+		Canvas.height = h;
 		var ctx = canvas.getContext('2d');
 		ctx.drawImage(img, 0, 0, w, h);
-		callback(canvas, fileName);
+		callback.bind(canvas)(fileName);
 	});
 }
 IMG.savePNG = function(fileName, canvas, callback) {
