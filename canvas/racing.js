@@ -1,4 +1,5 @@
 var Canvas = require('canvas'),
+	canvasTools = require('./canvas-tools'),
 	Image = Canvas.Image,
 	http = require('http'),
 	fs = require('fs'),
