@@ -13,7 +13,7 @@ var Canvas = require('canvas'),
 var alert = function() {
 	console.log(arguments[0]);
 }
-alert('========================================');
+alert('=============================================');
 if (process.argv.length > 2) {
 	var canvas = new Canvas();
 	IMG.loadPNG(__dirname + '/wms.png', canvas, function (canvas, fileName) {
