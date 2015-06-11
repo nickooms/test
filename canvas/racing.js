@@ -1,6 +1,6 @@
 var Canvas = require('canvas'),
 	canvasTools = require('./canvas-tools'),
-	alert = required('./alert'),
+	alert = require('./alert'),
 	Image = Canvas.Image,
 	http = require('http'),
 	fs = require('fs'),

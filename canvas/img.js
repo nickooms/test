@@ -1,7 +1,7 @@
 var Canvas = require('canvas'),
 	Image = Canvas.Image,
 	fs = require('fs'),
-	alert = required('./alert');
+	alert = require('./alert');
 var IMG = function() {
 	
 };
