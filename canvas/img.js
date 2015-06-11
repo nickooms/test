@@ -20,11 +20,11 @@ IMG.findColors = function(canvas) {
 	var color, colorItem, colors = {}, data = imageData.data;
 	for (var i = 0; i < data.length; i += 4) {
 		color = '#' + ((data[i + 2] * 0x100 * 0x100) + data[i + 1] * 0x100 + data[i]).toString(16);
-		colorItem = colors[color];
-		if (colorItem == null) {
-			colorItem = colors[color] = 0;
+		if (colors[color] == null) {
+			colors[color] = 1;
+		} else {
+			colors[color]++;
 		}
-		colorItem++;
 	}
 	var c = [];
 	for (var color in colors) {
