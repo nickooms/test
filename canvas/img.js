@@ -65,7 +65,7 @@ IMG.loadPNG = function(fileName, canvas, callback) {
 		Canvas.height = h;
 		var ctx = canvas.getContext('2d');
 		ctx.drawImage(img, 0, 0, w, h);
-		callback.bind(canvas)(fileName);
+		callback(fileName);
 	});
 }
 IMG.savePNG = function(fileName, canvas, callback) {
