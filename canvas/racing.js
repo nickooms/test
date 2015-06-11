@@ -11,7 +11,7 @@ var Canvas = require('canvas'),
 	floodFill = require('./floodfill');
 
 var alert = function() {
-	console.log(arguments);
+	console.log(arguments[0]);
 }
 if (process.argv.length > 2) {
 	IMG.loadPNG(__dirname + '/wms.png', function (canvas, fileName) {
