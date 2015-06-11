@@ -12,6 +12,7 @@ IMG.findColors = function(canvas) {
 	var ctx = canvas.getContext('2d');
 	var w = canvas.width;
 	var h = canvas.height;
+	alert('w', w, 'h', h);
 	var imageData = ctx.getImageData(0, 0, w, h);
 	var color, colors = {}, data = imageData.data;
 	for (var i = 0; i < data.length; i += 4) {
