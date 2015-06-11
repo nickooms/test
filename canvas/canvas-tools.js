@@ -1,6 +1,6 @@
-var Canvas = required('canvas'),
+var Canvas = require('canvas'),
 	Image = Canvas.Image,
-	IMG = required('./img');
+	IMG = require('./img');
 
 Canvas.prototype.load = function(fileName, callback) {
 	IMG.loadPNG(fileName, function(result) {
