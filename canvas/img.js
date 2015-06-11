@@ -8,7 +8,7 @@ function alert() {
 	console.log(arguments[0]);
 }
 IMG.findColors = function(canvas) {
-	alert('Checking colors');
+	//alert('Checking colors');
 	var ctx = canvas.getContext('2d');
 	var w = canvas.width;
 	var h = canvas.height;
@@ -36,10 +36,10 @@ IMG.findColors = function(canvas) {
 	return c;
 };
 IMG.fillAllPixels = function(canvas, replaceColor, fillColor) {
-  var result = true;
-  while (result) {
-  	result = IMG.findPixel(canvas, replaceColor, fillColor);
-  }
+	var result = true;
+	while (result) {
+		result = IMG.findPixel(canvas, replaceColor, fillColor);
+	}
 };
 IMG.findPixel = function(canvas, replaceColor, fillColor) {
 	var w = canvas.width, h = canvas.height;
@@ -47,33 +47,33 @@ IMG.findPixel = function(canvas, replaceColor, fillColor) {
 	for (var x = 0; x < w; x++) {
 		for (var y = 0; y < h; y++) {
 			i = (w * y + x) * 4;
-  		color = '#' + ((data[i + 2] * 256 * 256) + data[i + 1] * 256 + data[i]).toString(16);
-  		if (color == replaceColor) {
-  			floodFill(canvas, x, y, fillColor, 0xff);	    			
-  			return true;
-  		}
-  	}
+			color = '#' + ((data[i + 2] * 256 * 256) + data[i + 1] * 256 + data[i]).toString(16);
+			if (color == replaceColor) {
+				floodFill(canvas, x, y, fillColor, 0xff);	    			
+				return true;
+			}
+		}
 	}
 	return false;
 };
 IMG.loadPNG = function(fileName, callback) {
 	fs.readFile(__dirname + '/wms.png', function(err, image) {
-	  var img = new Image;
-	  img.src = image;
-	  var w = img.width, h = img.height, canvas = new Canvas(w, h);
-	  var ctx = canvas.getContext('2d');
-	  ctx.drawImage(img, 0, 0, w, h);
-	  callback(canvas, fileName);
+		var img = new Image;
+		img.src = image;
+		var w = img.width, h = img.height, canvas = new Canvas(w, h);
+		var ctx = canvas.getContext('2d');
+		ctx.drawImage(img, 0, 0, w, h);
+		callback(canvas, fileName);
 	});
 }
 IMG.savePNG = function(fileName, canvas, callback) {
-  var out = fs.createWriteStream(fileName),
-    stream = canvas.createPNGStream();
-  stream.on('data', function(chunk) {
-    out.write(chunk);
-  });
-  stream.on('end', function(chunk) {
-    callback(fileName);
-  });
+	var out = fs.createWriteStream(fileName),
+		stream = canvas.createPNGStream();
+	stream.on('data', function(chunk) {
+		out.write(chunk);
+	});
+	stream.on('end', function(chunk) {
+		callback(fileName);
+	});
 }
 module.exports = IMG;
