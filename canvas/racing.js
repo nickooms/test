@@ -9,9 +9,13 @@ var Canvas = require('canvas'),
   WMS = require('./wms');
   floodFill = require('./floodfill');
 
+var alert = function() {
+	console.log(arguments);
+}
 if (process.argv.length > 2) {
-	IMG.loadPNG(__dirname + '/wms.png', function(canvas, fileName) {
-		console.log('Loaded ' + fileName);
+	IMG.loadPNG(__dirname + '/wms.png', function (canvas, fileName) {
+		alert('========================================');
+		alert('Loaded ' + fileName);
 		IMG.findColors(canvas);
 	  IMG.fillAllPixels(canvas, '#cccccc', 0xff0000ff);
 	  IMG.fillAllPixels(canvas, '#b7b7b7', 0x00ff00ff);
