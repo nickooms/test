@@ -1,5 +1,6 @@
 var Canvas = require('canvas'),
 	canvasTools = require('./canvas-tools'),
+	alert = required('./alert'),
 	Image = Canvas.Image,
 	http = require('http'),
 	fs = require('fs'),
@@ -10,9 +11,9 @@ var Canvas = require('canvas'),
 	WMS = require('./wms');
 	floodFill = require('./floodfill');
 
-var alert = function() {
+/*var alert = function() {
 	console.log(arguments[0]);
-}
+}*/
 alert('=============================================');
 if (process.argv.length > 2) {
 	var canvas = new Canvas();

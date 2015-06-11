@@ -1,16 +1,17 @@
-var Canvas = require('canvas')
-	,	Image = Canvas.Image
-	,	fs = require('fs');
+var Canvas = require('canvas'),
+	Image = Canvas.Image,
+	fs = require('fs'),
+	alert = required('./alert');
 var IMG = function() {
 	
 };
-function alert() {
+/*function alert() {
 	var args = [];
 	for (var i = 0; i < arguments.length; i++) {
 		args.push(arguments[i]);
 	}
 	console.log(args.join(', '));
-}
+}*/
 IMG.findColors = function(canvas) {
 	var ctx = canvas.getContext('2d');
 	var w = canvas.width;
@@ -18,7 +19,7 @@ IMG.findColors = function(canvas) {
 	var imageData = ctx.getImageData(0, 0, w, h);
 	var color, colorItem, colors = {}, data = imageData.data;
 	for (var i = 0; i < data.length; i += 4) {
-		color = '#' + ((data[i + 2] * 256 * 256) + data[i + 1] * 256 + data[i]).toString(16);
+		color = '#' + ((data[i + 2] * 0x100 * 0x100) + data[i + 1] * 0x100 + data[i]).toString(16);
 		colorItem = colors[color];
 		if (colorItem == null) {
 			colorItem = colors[color] = 0;
