@@ -5,7 +5,11 @@ var IMG = function() {
 	
 };
 function alert() {
-	console.log(arguments.join(', '));
+	var args = [];
+	for (var i = 0; i < arguments.length; i++) {
+		args.push(arguments[i]);
+	}
+	console.log(args.join(', '));
 }
 IMG.findColors = function(canvas) {
 	//alert('Checking colors');
