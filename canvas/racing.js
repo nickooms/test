@@ -16,13 +16,13 @@ var alert = function() {
 alert('=============================================');
 if (process.argv.length > 2) {
 	var canvas = new Canvas();
-	IMG.loadPNG(__dirname + '/wms.png', canvas, function (canvas, fileName) {
+	IMG.loadPNG(__dirname + '/wms.png', canvas, function (fileName) {
 		alert('Loaded ' + fileName);
 		IMG.findColors(canvas);
 		IMG.fillAllPixels(canvas, '#cccccc', 0xff0000ff);
 		IMG.fillAllPixels(canvas, '#b7b7b7', 0x00ff00ff);
 		IMG.savePNG(__dirname + '/wms-1.png', canvas, function(fileName) {
-			console.log('Saved ' + fileName)
+			console.log('Saved ' + fileName);
 		});
 	});
 } else {
