@@ -5,13 +5,6 @@ var Canvas = require('canvas'),
 var IMG = function() {
 	
 };
-/*function alert() {
-	var args = [];
-	for (var i = 0; i < arguments.length; i++) {
-		args.push(arguments[i]);
-	}
-	console.log(args.join(', '));
-}*/
 IMG.findColors = function(canvas) {
 	var ctx = canvas.getContext('2d');
 	var w = canvas.width;

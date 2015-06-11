@@ -9,12 +9,11 @@ var Canvas = require('canvas'),
 	IMG = require('./img'),
 	BBOX = require('./bbox'),
 	WMS = require('./wms');
-	floodFill = require('./floodfill');
+	floodFill = require('./floodfill'),
+	clc = require('cli-color');
 
-/*var alert = function() {
-	console.log(arguments[0]);
-}*/
-alert('=============================================');
+process.stdout.write(clc.erase.screen);
+alert(clc.yellowBright('============================================='));
 if (process.argv.length > 2) {
 	var canvas = new Canvas();
 	IMG.loadPNG(__dirname + '/wms.png', canvas, function (fileName) {
