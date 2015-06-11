@@ -67,7 +67,7 @@ IMG.loadPNG = function(fileName, canvas, callback) {
 		img.src = image;
 		var w = img.width, h = img.height;//, canvas = new Canvas(w, h);
 		canvas.width = w;
-		Canvas.height = h;
+		canvas.height = h;
 		var ctx = canvas.getContext('2d');
 		ctx.drawImage(img, 0, 0, w, h);
 		callback(fileName);
