@@ -12,20 +12,18 @@ function alert() {
 	console.log(args.join(', '));
 }
 IMG.findColors = function(canvas) {
-	//alert('Checking colors');
 	var ctx = canvas.getContext('2d');
 	var w = canvas.width;
 	var h = canvas.height;
-	alert('w', w, 'h', h);
 	var imageData = ctx.getImageData(0, 0, w, h);
-	var color, colors = {}, data = imageData.data;
+	var color, colorItem, colors = {}, data = imageData.data;
 	for (var i = 0; i < data.length; i += 4) {
 		color = '#' + ((data[i + 2] * 256 * 256) + data[i + 1] * 256 + data[i]).toString(16);
-		if (colors[color] == null) {
-			colors[color] = 1;
-		} else {
-			colors[color]++;
+		colorItem = colors[color];
+		if (colorItem == null) {
+			colorItem = colors[color] = 0;
 		}
+		colorItem++;
 	}
 	var c = [];
 	for (var color in colors) {
@@ -34,8 +32,6 @@ IMG.findColors = function(canvas) {
 	c.sort(function(a, b) {
 		return a[1] < b[1] ? -1 : 1;
 	});
-	//console.log(c);
-	//console.log(c.length);
 	ctx.putImageData(imageData, 0, 0);
 	alert(c.length + ' different colors found');
 	return c;
