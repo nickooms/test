@@ -10,13 +10,21 @@ var Canvas = require('canvas'),
 	BBOX = require('./bbox'),
 	WMS = require('./wms');
 	floodFill = require('./floodfill'),
-	clc = require('cli-color');
+	clc = require('cli-color'),
+	Color = require('./color');
 
-process.stdout.write(clc.erase.screen);
-alert(clc.yellowBright('============================================='));
+var FILE_NAME = 'wms.png';
+//console.log(clc.erase.screen);
+alert(clc.reset + clc.bold.white('             Converting ') + clc.underline.bold(FILE_NAME));
+var line = '';
+for (var i = 0; i < 0xff; i++) {
+	var msg = clc.black.bgXterm(i);
+	line += msg('       ');
+}
+console.log(line);
 if (process.argv.length > 2) {
 	var canvas = new Canvas();
-	IMG.loadPNG(__dirname + '/wms.png', canvas, function (fileName) {
+	IMG.loadPNG(__dirname + '/' + FILE_NAME, canvas, function (fileName) {
 		alert('Loaded ' + fileName);
 		alert(IMG.findColors(canvas));
 		IMG.fillAllPixels(canvas, '#cccccc', 0xff0000ff);
