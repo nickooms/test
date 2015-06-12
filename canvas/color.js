@@ -13,7 +13,7 @@ fs.readFile(__dirname + '/color-table.html', function(err, data) {
 				if (typeof cell == 'string') {
 					color = { nr: parseInt(cell) };
 				} else {
-					console.log(cell.img[0].$.src.split('/').reverse()[0].split('.')[0]);
+					//console.log(cell.img[0].$.src.split('/').reverse()[0].split('.')[0]);
 					colors.push(color);
 				}
 			}
