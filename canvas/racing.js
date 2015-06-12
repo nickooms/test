@@ -14,7 +14,7 @@ var Canvas = require('canvas'),
   Color = require('./color');
 
 var FILE_NAME = 'wms.png';
-process.stdout.write(clc.erase.screen);
+process.stdout.write(clc.reset);
 //alert(clc.reset + clc.bold.white('             Converting ') + clc.underline.bold(FILE_NAME));
 var line = '';
 for (var i = 0; i < 0xff; i++) {
