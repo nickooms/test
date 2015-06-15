@@ -52,8 +52,8 @@ IMG.findPixel = function(canvas, replaceColor, fillColor) {
 			if (color == replaceColor) {
 				var result = floodFill(canvas, x, y, fillColor, 0xff);
 				if (result.width != 1 && result.height != 1) {
-					//var bbox = new CanvasBBOX(result.x, result.y, result.x + result.width, result.y + result.height);
-					//console.log(bbox);
+					var bbox = new CanvasBBOX(result.x, result.y, result.x + result.width, result.y + result.height);
+					console.log(bbox.width);
 					return { x: result.x, y: result.y, w: result.width, h: result.height, image: result.image };
 				} else {
 					return true;

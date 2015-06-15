@@ -76,10 +76,10 @@ if (process.argv.length > 2) {
 					var w = canvas.width;
 					var h = canvas.height;
 					img.bbox = new BBOX(
-						bbox.min.x + (img.x / w * bbox.width() / w),
-						bbox.min.y + (img.y / h * bbox.height() / h),
-						bbox.max.x - ((w - (img.w + img.x)) * bbox.width() / w),
-						bbox.max.y - ((h - (img.h + img.y)) * bbox.height() / h)
+						bbox.min.x + (img.x / w * bbox.width / w),
+						bbox.min.y + (img.y / h * bbox.height / h),
+						bbox.max.x - ((w - (img.w + img.x)) * bbox.width / w),
+						bbox.max.y - ((h - (img.h + img.y)) * bbox.height / h)
 					);
 					img.fileName = img.bbox.toString() + '.png';
 				}

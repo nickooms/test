@@ -23,8 +23,8 @@ fs.readdir(__dirname + '/streetview', function(err, files) {
 	});
 	var bbox = new BBOX();
 	files.map(tile2Grid).forEach(bbox.check.bind(bbox));
-	var cols = 1 + bbox.width();
-	var rows = 1 + bbox.height();
+	var cols = 1 + bbox.width;
+	var rows = 1 + bbox.height;
 	var canvas = new Canvas(cols * SIZE, rows * SIZE)
   	, ctx = canvas.getContext('2d');
   files.map(tile2Grid).forEach(function(grid) {

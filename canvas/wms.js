@@ -41,8 +41,8 @@ WMS.query = function(options) {
 	}
 	if (options.bbox != undefined) {
 		var bbox = options.bbox;
-		var w = bbox.width();
-		var h = bbox.height();
+		var w = bbox.width;
+		var h = bbox.height;
 		var aspectRatio = w / h;
 		if (aspectRatio > 1) {
 			query.height = parseInt(query.height / aspectRatio);
