@@ -12,7 +12,7 @@ IMG.findColors = function(canvas) {
 	var imageData = ctx.getImageData(0, 0, w, h);
 	var color, colorItem, colors = {}, data = imageData.data;
 	for (var i = 0; i < data.length; i += 4) {
-		color = '#' + ((data[i + 2] * 0x100 * 0x100) + data[i + 1] * 0x100 + data[i]).toString(16);
+		color = ('#' + ((data[i + 2] * 0x100 * 0x100) + data[i + 1] * 0x100 + data[i]).toString(16)).toUpperCase();
 		if (colors[color] == null) {
 			colors[color] = 1;
 		} else {
@@ -31,10 +31,15 @@ IMG.findColors = function(canvas) {
 	return c;
 };
 IMG.fillAllPixels = function(canvas, replaceColor, fillColor) {
+	var list = [];
 	var result = true;
 	while (result) {
 		result = IMG.findPixel(canvas, replaceColor, fillColor);
+		if (result != true && result != false) {
+			list.push(result);
+		}
 	}
+	return list;
 };
 IMG.findPixel = function(canvas, replaceColor, fillColor) {
 	var w = canvas.width, h = canvas.height;
@@ -42,20 +47,27 @@ IMG.findPixel = function(canvas, replaceColor, fillColor) {
 	for (var x = 0; x < w; x++) {
 		for (var y = 0; y < h; y++) {
 			i = (w * y + x) * 4;
-			color = '#' + ((data[i + 2] * 256 * 256) + data[i + 1] * 256 + data[i]).toString(16);
+			color = '#' + ((data[i + 2] * 0x100 * 0x100) + data[i + 1] * 0x100 + data[i]).toString(16);
 			if (color == replaceColor) {
-				floodFill(canvas, x, y, fillColor, 0xff);	    			
-				return true;
+				var result = floodFill(canvas, x, y, fillColor, 0xff);
+				if (result.width != 1 && result.height != 1) {
+					return { x: result.x, y: result.y, w: result.width, h: result.height, image: result.image };
+				} else {
+					return true;
+				}
 			}
 		}
 	}
 	return false;
 };
 IMG.loadPNG = function(fileName, canvas, callback) {
-	fs.readFile(__dirname + '/wms.png', function(err, image) {
+	fs.readFile(fileName, function(err, image) {
+		if (err)
+			console.log(err);
 		var img = new Image;
 		img.src = image;
-		var w = img.width, h = img.height;//, canvas = new Canvas(w, h);
+		var w = img.width;
+		var h = img.height;
 		canvas.width = w;
 		canvas.height = h;
 		var ctx = canvas.getContext('2d');
