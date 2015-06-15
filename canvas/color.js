@@ -1,4 +1,5 @@
 var fs = require('fs'),
+<<<<<<< HEAD
 	xml2js = require('xml2js'),
 	alert = require('./alert'),
 	RGB = require('./rgb'),
@@ -9,6 +10,11 @@ var Color = function() {
 Color.colors = [];
 
 /*var color, parser = new xml2js.Parser();
+=======
+	xml2js = require('xml2js');
+
+var color, parser = new xml2js.Parser();
+>>>>>>> efa30ad6b3dd8dee4eee772809ae4777ff7f11bd
 fs.readFile(__dirname + '/color-table.html', function(err, data) {
 	parser.parseString(data, function (err, result) {
 		var rows = result.table.tr;
@@ -20,6 +26,7 @@ fs.readFile(__dirname + '/color-table.html', function(err, data) {
 				if (typeof cell == 'string') {
 					color = { nr: parseInt(cell) };
 				} else {
+<<<<<<< HEAD
 					color.code = ('#' + cell.img[0].$.src.split('/').reverse()[0].split('.')[0]).toUpperCase();
 					Color.colors.push(color);
 				}
@@ -50,5 +57,21 @@ Color.find = function(color) {
 	return colors[0].nr;
 };*/
 Color.load = function() {
+=======
+					//console.log(cell.img[0].$.src.split('/').reverse()[0].split('.')[0]);
+					colors.push(color);
+				}
+			}
+		}
+		//console.dir(result);
+		//console.log('Done');
+	});
+});
+
+var Color = function() {
+};
+Color.load = function() {
+//	fs.read
+>>>>>>> efa30ad6b3dd8dee4eee772809ae4777ff7f11bd
 }
 module.exports = Color;
