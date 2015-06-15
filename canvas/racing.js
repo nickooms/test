@@ -14,33 +14,16 @@ var Canvas = require('canvas'),
 	Color = require('./color'),
 	color2Xterm = require('color2xterm'),
 	RGB = require('./rgb'),
-	HSV = require('./hsv');
+	HSV = require('./hsv'),
+	Style = require('./style-command-line');
 
 var FILE_NAME = '152512,221815,152688,221918.png';
 
-function title(text, style) {
-	console.log(clc.reset + center(text, style));
-}
-function center(text, style) {
-	var width = clc.windowSize.width;
-	var textLength = clc.strip(text).length;
-	var left = parseInt((width - textLength) / 2);
-	var right = width - (textLength + left);
-	return fill(left, style) + text + fill(right, style);
-}
-function fill(nrCharacters, style) {
-	style = style || {};
-	style.fillCharacter = style.fillCharacter || ' ';
-	var s = '';
-	for (var i = 0; i < nrCharacters; i++)
-		s += style.fillCharacter;
-	return style.clc ? style.clc(s) : s;
-}
 var style = {
 	fillCharacter: '=',
 	clc: clc.bold.blueBright.bgXterm(73)
 };
-title(clc.bold.bgXterm(73).white('Converting ') + clc.underline.bold.bgXterm(73)(FILE_NAME), style);
+Style.title(clc.bold.bgXterm(73).white('Converting ') + clc.underline.bold.bgXterm(73)(FILE_NAME), style);
 
 if (process.argv.length > 2) {
 	var canvas = new Canvas();
