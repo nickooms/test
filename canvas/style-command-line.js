@@ -1,6 +1,11 @@
-var Style = function() {
-	
+var clc = require('cli-color');
+
+var Style = function() {	
 };
+
+Style.FILE_NAME = { '/': clc.magentaBright('/') };
+Style.FILE = clc.bold.bgBlackBright.magentaBright;
+
 Style.title = function(text, style) {
 	console.log(clc.reset + Style.center(text, style));
 }
@@ -18,5 +23,14 @@ Style.fill = function(nrCharacters, style) {
 	for (var i = 0; i < nrCharacters; i++)
 		s += style.fillCharacter;
 	return style.clc ? style.clc(s) : s;
+}
+Style.fileName = function(fileName) {
+	return clc.bgBlackBright.whiteBright(clc.art(fileName, Style.FILE_NAME));
+}
+Style.fileAction = function(action, fileName) {
+	var width = clc.windowSize.width;
+	var text = Style.FILE(action + ' ') + Style.fileName(fileName.replace(__dirname, '.'));
+	text += Style.FILE(Style.fill(width - clc.strip(text).length));
+	return text;
 }
 module.exports = Style;

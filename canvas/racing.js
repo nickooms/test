@@ -8,6 +8,7 @@ var Canvas = require('canvas'),
 	download = require('./download'),
 	IMG = require('./img'),
 	BBOX = require('./bbox'),
+	CanvasBBOX = require('./canvas-bbox'),
 	WMS = require('./wms');
 	floodFill = require('./floodfill'),
 	clc = require('cli-color'),
@@ -29,8 +30,7 @@ if (process.argv.length > 2) {
 	var canvas = new Canvas();
 	var pieces = [];
 	IMG.loadPNG(__dirname + '/streets/' + FILE_NAME, canvas, function (fileName) {
-		var style = { '/': clc.magentaBright('/') };
-		alert(clc.bold.bgBlackBright.white('Loaded ') + clc.bgBlackBright.whiteBright(clc.art(fileName, style)));
+		alert(Style.fileAction('Loaded', fileName));
 		var colors = IMG.findColors(canvas);
 		var s = '';
 		/*colors.sort(function(a, b) {
@@ -48,13 +48,13 @@ if (process.argv.length > 2) {
 		pieces.push(IMG.fillAllPixels(canvas, '#cccccc', 0xff0000ff));
 		pieces.push(IMG.fillAllPixels(canvas, '#b7b7b7', 0x00ff00ff));
 		IMG.savePNG(__dirname + '/wms-1.png', canvas, function(fileName) {
-			console.log('Saved ' + fileName);
+			alert(Style.fileAction('Saved', fileName));
 			//alert(Color.find('#afafaf'));
 		});
 		/*var bbox = FILE_NAME.split('.')[0].split(',');
 		bbox = new BBOX(bbox[0], bbox[1], bbox[2], bbox[3]);*/
 		var bbox = new BBOX(FILE_NAME.split('.')[0]);
-		console.log(bbox);
+		//console.log(bbox);
 		for (var i = 0; i < pieces.length; i++) {
 			var list = pieces[i];
 			for (var j = 0; j < list.length; j++) {
@@ -71,7 +71,7 @@ if (process.argv.length > 2) {
 					edges.push({ bottom: img.y + img.h * 2 });
 				if (edges.length > 0) {
 					img.edges = edges;
-					console.log(img.fileName + ' ' + img.x, img.y, img.w, img.h);
+					//console.log(img.fileName + ' ' + img.x, img.y, img.w, img.h);
 				} else {
 					var w = canvas.width;
 					var h = canvas.height;
@@ -95,7 +95,7 @@ if (process.argv.length > 2) {
 				var saveCanvas = new Canvas(img.w, img.h);
 				saveCanvas.getContext('2d').putImageData(imageData, 0, 0);
 				IMG.savePNG(__dirname + '/images/'+ img.fileName, saveCanvas, function(fileName) {
-					console.log('Saved ' + fileName);
+					alert(Style.fileAction('Saved', fileName));
 				});
 			}
 		}
