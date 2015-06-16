@@ -97,7 +97,7 @@ if (process.argv.length > 2) {
 				var saveCanvas = new Canvas(img.w, img.h);
 				saveCanvas.getContext('2d').putImageData(imageData, 0, 0);
 				IMG.savePNG(__dirname + '/images/'+ img.fileName, saveCanvas, function(fileName) {
-					alert(Style.fileAction('Saved', fileName));
+					//alert(Style.fileAction('Saved', fileName));
 				});
 			}
 		}
