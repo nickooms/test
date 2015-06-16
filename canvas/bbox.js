@@ -18,6 +18,12 @@ var BBOX = function() {
       break;
   }
 };
+var x = function() {
+	return this.min.x;
+};
+var y = function() {
+	return this.min.y;
+};
 var width = function() {
   return this.max.x - this.min.x;
 };
@@ -25,6 +31,8 @@ var height = function() {
   return this.max.y - this.min.y;
 };
 Object.defineProperties(BBOX.prototype, {
+	x: { get: x },
+	y: { get: y },
   width: { get: width },
   height: { get: height }
 });
