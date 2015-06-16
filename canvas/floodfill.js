@@ -69,9 +69,9 @@ function floodFill(canvas, x, y, newColor, newAlpha) {
     }
   }
   context.putImageData(img, 0, 0);
-  var imageBBOX = new ImageBBOX(fill, minX, minY, maxX, maxY);
-  console.log(imageBBOX.min, imageBBOX.max);
-  return imageBBOX;
+  var bbox = new ImageBBOX(fill, minX, minY, maxX, maxY);
+  console.log(bbox.x, bbox.y, bbox.width, bbox.height);
+  return bbox;
   /*return {
     image: fill,
     x: minX,
