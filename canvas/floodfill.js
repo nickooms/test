@@ -1,4 +1,5 @@
-var Canvas = require('canvas');
+var Canvas = require('canvas'),
+  ImageDataBBOX = require('./image-data-bbox');
 function floodFill(canvas, x, y, newColor, newAlpha) {
   function getPixelColor(x, y) {
     var offset = (y * W + x) * 4;
@@ -68,12 +69,19 @@ function floodFill(canvas, x, y, newColor, newAlpha) {
     }
   }
   context.putImageData(img, 0, 0);
-  return {
+  var bbox = new ImageDataBBOX(fill, minX, minY, maxX, maxY);
+  if (bbox.size != 0) {
+    var image = bbox.image;
+    console.log(bbox.width + 'px\t*\t' + bbox.height + 'px\t=\t' + bbox.size + 'px');
+    console.log(image.width + 'm\t*\t' + image.height + 'm\t=\t' + (image.width * image.height) + 'm');
+  }
+  return bbox;
+  /*return {
     image: fill,
     x: minX,
     y: minY,
     width: 1 + maxX - minX,
     height: 1 + maxY - minY
-  };
+  };*/
 };
 module.exports = floodFill;

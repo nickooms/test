@@ -18,15 +18,27 @@ var BBOX = function() {
       break;
   }
 };
+var x = function() {
+	return this.min.x;
+};
+var y = function() {
+	return this.min.y;
+};
 var width = function() {
   return this.max.x - this.min.x;
 };
 var height = function() {
   return this.max.y - this.min.y;
 };
+var size = function() {
+	return this.width * this.height;
+};
 Object.defineProperties(BBOX.prototype, {
+	x: { get: x },
+	y: { get: y },
   width: { get: width },
-  height: { get: height }
+  height: { get: height },
+  size: { get: size }
 });
 BBOX.prototype.check = function(point) {
   this.min.substract(point);

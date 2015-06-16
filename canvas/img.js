@@ -2,7 +2,7 @@ var Canvas = require('canvas'),
 	Image = Canvas.Image,
 	fs = require('fs'),
 	alert = require('./alert'),
-	CanvasBBOX = require('./canvas-bbox');
+	ImageDataBBOX = require('./image-data-bbox');
 var IMG = function() {
 	
 };
@@ -28,7 +28,7 @@ IMG.findColors = function(canvas) {
 		return a[1] < b[1] ? -1 : 1;
 	});
 	ctx.putImageData(imageData, 0, 0);
-	alert(c.length + ' different colors found');
+	//alert(c.length + ' different colors found');
 	return c;
 };
 IMG.fillAllPixels = function(canvas, replaceColor, fillColor) {
@@ -51,9 +51,9 @@ IMG.findPixel = function(canvas, replaceColor, fillColor) {
 			color = '#' + ((data[i + 2] * 0x100 * 0x100) + data[i + 1] * 0x100 + data[i]).toString(16);
 			if (color == replaceColor) {
 				var result = floodFill(canvas, x, y, fillColor, 0xff);
-				if (result.width != 1 && result.height != 1) {
-					var bbox = new CanvasBBOX(result.x, result.y, result.x + result.width, result.y + result.height);
-					console.log(bbox.width);
+				if (result.width != 0 && result.height != 0) {
+					//var bbox = new ImageBBOX(result.image, result.x, result.y, result.x + result.width, result.y + result.height);
+					//console.log(result.width, result.image.width);
 					return { x: result.x, y: result.y, w: result.width, h: result.height, image: result.image };
 				} else {
 					return true;

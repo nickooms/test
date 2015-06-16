@@ -8,7 +8,7 @@ var Canvas = require('canvas'),
 	download = require('./download'),
 	IMG = require('./img'),
 	BBOX = require('./bbox'),
-	CanvasBBOX = require('./canvas-bbox'),
+	ImageDataBBOX = require('./image-data-bbox'),
 	WMS = require('./wms');
 	floodFill = require('./floodfill'),
 	clc = require('cli-color'),
@@ -27,6 +27,7 @@ var style = {
 Style.title(clc.bold.bgXterm(73).white('Converting ') + clc.underline.bold.bgXterm(73)(FILE_NAME), style);
 
 if (process.argv.length > 2) {
+	var bbox = new BBOX(FILE_NAME.split('.')[0]);
 	var canvas = new Canvas();
 	var pieces = [];
 	IMG.loadPNG(__dirname + '/streets/' + FILE_NAME, canvas, function (fileName) {
@@ -44,7 +45,7 @@ if (process.argv.length > 2) {
 			var c = clc.black.bgXterm(colorNr);
 			s += c(color) + ' ';
 		}
-		console.log(s);
+		//console.log(s);
 		pieces.push(IMG.fillAllPixels(canvas, '#cccccc', 0xff0000ff));
 		pieces.push(IMG.fillAllPixels(canvas, '#b7b7b7', 0x00ff00ff));
 		IMG.savePNG(__dirname + '/wms-1.png', canvas, function(fileName) {
@@ -53,7 +54,7 @@ if (process.argv.length > 2) {
 		});
 		/*var bbox = FILE_NAME.split('.')[0].split(',');
 		bbox = new BBOX(bbox[0], bbox[1], bbox[2], bbox[3]);*/
-		var bbox = new BBOX(FILE_NAME.split('.')[0]);
+		//var bbox = new BBOX(FILE_NAME.split('.')[0]);
 		//console.log(bbox);
 		for (var i = 0; i < pieces.length; i++) {
 			var list = pieces[i];
@@ -62,24 +63,25 @@ if (process.argv.length > 2) {
 				img.fileName = i + '_' + j + '.png';
 				var edges = [];
 				if (img.x == 0)
-					edges.push({ left: -img.w });
+					edges.push({ left: -img.width });
 				if (img.y == 0)
-					edges.push({ top: -img.h });
-				if (img.x + img.w == img.image.width)
-					edges.push({ right: img.x + img.w * 2 });
-				if (img.y + img.h == img.image.height)
-					edges.push({ bottom: img.y + img.h * 2 });
+					edges.push({ top: -img.height });
+				if (img.x + img.width == img.image.width)
+					edges.push({ right: img.x + img.width * 2 });
+				if (img.y + img.height == img.image.height)
+					edges.push({ bottom: img.y + img.height * 2 });
 				if (edges.length > 0) {
 					img.edges = edges;
 					//console.log(img.fileName + ' ' + img.x, img.y, img.w, img.h);
 				} else {
 					var w = canvas.width;
 					var h = canvas.height;
+					//console.dir(img);
 					img.bbox = new BBOX(
 						bbox.min.x + (img.x / w * bbox.width / w),
 						bbox.min.y + (img.y / h * bbox.height / h),
-						bbox.max.x - ((w - (img.w + img.x)) * bbox.width / w),
-						bbox.max.y - ((h - (img.h + img.y)) * bbox.height / h)
+						bbox.max.x - ((w - (img.width + img.x)) * bbox.width / w),
+						bbox.max.y - ((h - (img.height + img.y)) * bbox.height / h)
 					);
 					img.fileName = img.bbox.toString() + '.png';
 				}
